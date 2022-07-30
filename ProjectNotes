@@ -1,0 +1,15 @@
+today goal = create and save note:
+
+future:
+1. Add  a menu
+2. Set up sql data storage
+
+Use Cases:
+
+Create a note and Store the Note in ActivitiesList
+
+Retrieve a Note from ActivitiesList by searching for NoteTitle
+
+Edit contents of an existing note
+
+Delete a Note by Title
