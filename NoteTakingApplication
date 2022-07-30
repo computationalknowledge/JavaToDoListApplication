@@ -1,0 +1,88 @@
+// Java Resources:
+// https://beginnersbook.com/2013/12/java-arraylist-add-method-example/
+
+import java.util.*;
+
+public class NoteTakingApplication  {
+	// program launcher
+	// DO NOT put application LOGIC here in the Application Launcher
+	public static void main(String args []){
+		ApplicationManager manager = new ApplicationManager();
+		manager.run();
+	}
+}
+
+class ApplicationManager{
+
+	public Note n;
+
+	public void run(){
+		// create a Note
+		n = new Note();
+		// now let's create a reference to NoteHandling
+		NoteHandling noteHander = new NoteHandling();
+		noteHander.CreateNoteStoreActivitiesList(n);
+
+		NoteHandling.DisplayContentsOf_notesStore();
+	}
+}
+
+class Note{
+	String NoteTitle;
+	String NoteContents;
+	String DateCreated;
+	String DateDue;
+
+	public Note(){
+		
+	}
+
+	public Note(String title, String contents, String created, String due){
+		this.NoteTitle = title;
+		this.NoteContents = contents;
+		this.DateCreated = created;
+		this.DateDue = due;
+	}
+}
+
+class ActivitiesList{
+	// design notes for ActivitiesList
+
+	// by making this member STATIC, we can call the notesStore through
+	// reference to the CLASS ActivitiesList, not needing to make an OBJECT
+	public static ArrayList<Note> notesStore = new ArrayList();
+}
+
+class NoteHandling{
+	// This class is our Core Business Logic Class
+	// here in this class we contain all our Business logic for all our
+	// use Cases for:
+	// 1. Create NOTE
+	// 2. Search for Notes
+	// 3. Delete Notes
+	// Persist our Notes list to a SQLite database
+
+	public static void DisplayContentsOf_notesStore(){
+		 Note a;
+		 for (int i = 0; i < (ActivitiesList.notesStore).size(); i++)
+         {  
+            // Printing and display the elements in ArrayList
+            a = (ActivitiesList.notesStore).get(i);
+            System.out.println(a.DateDue);      
+            System.out.println(a.DateCreated);
+            System.out.println(a.NoteTitle); 
+            System.out.println(a.NoteContents); 
+         }         
+	}
+
+	public void CreateNoteStoreActivitiesList(Note n){
+		n.NoteTitle = "Shopping List";
+		n.DateDue = "August 1";
+		n.DateCreated = "July 30";
+		n.NoteContents = "Buy Dog Food";
+
+		// how will we get a handle on the Arraylist? 
+
+		(ActivitiesList.notesStore).add(n);
+	}
+}
